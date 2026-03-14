@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Exam Prep</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <p>Master your vocabulary for Unit 7 & 8</p>
+            <button id="toggleLangBtn" class="primary-btn">
+                <i class="fa-solid fa-language"></i>
+                <span>Switch to Arabic Front</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Toast Notification for Copy -->
+        <div id="toast" class="toast">Number copied to clipboard!</div>
+
+        <!-- UNIT 7 SECTIONS -->
+        <section class="unit-section">
+            <h2 class="unit-title"><span>Unit 7</span> Vocabulary</h2>
+            <div class="cards-grid" id="unit7-grid">
+                <!-- Cards will be injected by JS -->
+            </div>
+        </section>
+
+        <!-- UNIT 8 SECTIONS -->
+        <section class="unit-section">
+            <h2 class="unit-title"><span>Unit 8</span> Vocabulary</h2>
+            <div class="cards-grid" id="unit8-grid">
+                <!-- Cards will be injected by JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-card">
+            <p class="made-by">Made by <span class="highlight">Eng. Fares Mohammed</span></p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/fares-mohammed-51a8a03a9/" target="_blank" class="social-btn"><i
+                        class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/fares.mohammed.819316" target="_blank" class="social-btn"><i
+                        class="fa-brands fa-facebook-f"></i></a>
+                <button class="social-btn copy-phone" title="Copy Number"><i class="fa-solid fa-phone"></i></button>
+                <a href="https://t.me/+201203927960" target="_blank" class="social-btn"><i
+                        class="fa-brands fa-telegram"></i></a>
+                <a href="https://wa.me/201203927960" target="_blank" class="social-btn"><i
+                        class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
