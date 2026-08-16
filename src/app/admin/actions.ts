@@ -56,36 +56,46 @@ export async function verifyAuth() {
   }
 }
 
+import { revalidatePath } from "next/cache";
+
 // CRUD Actions for Grades
 export async function addGrade(slug: string, title: string) {
   await supabase.from("grades").insert({ slug, title });
+  revalidatePath("/", "layout");
 }
 export async function deleteGrade(id: number) {
   await supabase.from("grades").delete().eq("id", id);
+  revalidatePath("/", "layout");
 }
 
 // CRUD Actions for Units
 export async function addUnit(grade_id: number, title: string) {
   await supabase.from("units").insert({ grade_id, title });
+  revalidatePath("/", "layout");
 }
 export async function deleteUnit(id: number) {
   await supabase.from("units").delete().eq("id", id);
+  revalidatePath("/", "layout");
 }
 
 // CRUD Actions for Lessons
 export async function addLesson(unit_id: number, title: string) {
   await supabase.from("lessons").insert({ unit_id, title });
+  revalidatePath("/", "layout");
 }
 export async function deleteLesson(id: number) {
   await supabase.from("lessons").delete().eq("id", id);
+  revalidatePath("/", "layout");
 }
 
 // CRUD Actions for Words
 export async function addWord(lesson_id: number, en_word: string, ar_word: string) {
   await supabase.from("words").insert({ lesson_id, en_word, ar_word });
+  revalidatePath("/", "layout");
 }
 export async function deleteWord(id: number) {
   await supabase.from("words").delete().eq("id", id);
+  revalidatePath("/", "layout");
 }
 
 // Update Settings
@@ -96,6 +106,7 @@ export async function updateSetting(key: string, value: string) {
   } else {
     await supabase.from("settings").insert({ key, value });
   }
+  revalidatePath("/", "layout");
 }
 
 // Change Password
