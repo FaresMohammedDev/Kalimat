@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaSyncAlt } from "react-icons/fa6";
+import { FaArrowsRotate } from "react-icons/fa6";
 
 type WordItem = {
   id: number;
@@ -130,7 +130,7 @@ export default function MatchGame({ words, units }: { words: WordItem[], units: 
         </select>
         
         <button onClick={startRound} className="primary-btn" style={{ padding: "10px 20px" }}>
-          <FaSyncAlt />
+          <FaArrowsRotate />
           <span>New Round</span>
         </button>
       </div>
