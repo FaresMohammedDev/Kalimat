@@ -87,6 +87,7 @@ header {
     margin-bottom: 10px;
     background: var(--primary-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -263,6 +264,21 @@ footer {
 .made-by .highlight {
     color: var(--blue-accent);
     font-weight: 700;
+}
+
+.footer-links-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.contact-note {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    font-family: 'Cairo', sans-serif;
+    opacity: 0.8;
 }
 
 .social-links {
