@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaPhone, FaTelegram, FaWhatsapp, FaFacebookF, FaCommentDots, FaTimes } from "react-icons/fa6";
+import { FaPhone, FaTelegram, FaWhatsapp, FaFacebookF, FaCommentDots, FaXmark } from "react-icons/fa6";
 
 export default function FloatingContact({
   phone,
@@ -50,7 +50,7 @@ export default function FloatingContact({
         )}
       </div>
       <button onClick={toggleOpen} className="floating-toggle">
-        {isOpen ? <FaTimes /> : <FaCommentDots />}
+        {isOpen ? <FaXmark /> : <FaCommentDots />}
       </button>
     </div>
   );
