@@ -37,7 +37,9 @@ export default async function RootLayout({
 
         <header>
           <div className="container header-content">
-            <h1>Kalimat</h1>
+            <Link href="/" style={{ textDecoration: 'none' }}>
+              <h1>Kalimat</h1>
+            </Link>
             <p>Master your vocabulary for all grades</p>
             <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
               <Link href="/" className="primary-btn">
