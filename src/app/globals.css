@@ -135,7 +135,7 @@ header {
 /* Main Layout */
 main {
     flex: 1;
-    padding-bottom: 80px;
+    padding-bottom: 120px;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -310,6 +310,11 @@ footer {
     flex-direction: column;
     align-items: flex-end;
     gap: 10px;
+    pointer-events: none;
+}
+
+.floating-contact > * {
+    pointer-events: auto;
 }
 
 .contact-menu {
