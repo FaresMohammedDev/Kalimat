@@ -8,11 +8,18 @@ import { SignJWT, jwtVerify } from "jose";
 const SECRET_KEY = new TextEncoder().encode(process.env.JWT_SECRET || "fallback_secret_for_development_only");
 
 export async function login(password: string) {
-  const { data: settings } = await supabase.from("settings").select("value").eq("key", "admin_password").single();
+  console.log("Login attempt with password:", password);
+  const { data: settings, error: dbError } = await supabase.from("settings").select("value").eq("key", "admin_password").single();
   
-  if (!settings) return { success: false, error: "Admin not configured" };
+  if (dbError) console.error("DB Error:", dbError);
+  if (!settings) {
+    console.log("Admin password setting not found!");
+    return { success: false, error: "Admin not configured" };
+  }
 
+  console.log("Hash from DB:", settings.value);
   const isValid = await bcrypt.compare(password, settings.value);
+  console.log("Password valid:", isValid);
   
   if (isValid) {
     const token = await new SignJWT({ admin: true })
@@ -21,7 +28,8 @@ export async function login(password: string) {
       .sign(SECRET_KEY);
       
     const cookieStore = await cookies();
-    cookieStore.set("admin_token", token, { httpOnly: true, secure: process.env.NODE_ENV === "production" });
+    cookieStore.set("admin_token", token, { httpOnly: true, path: '/' });
+    console.log("Cookie set!");
     
     return { success: true };
   }

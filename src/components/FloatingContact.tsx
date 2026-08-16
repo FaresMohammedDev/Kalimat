@@ -1,7 +1,6 @@
 "use client";
-
 import { useState } from "react";
-import { FaPhone, FaTelegram, FaWhatsapp, FaFacebookF, FaCommentDots, FaXmark } from "react-icons/fa6";
+import { FaPhone, FaTelegram, FaWhatsapp, FaFacebookF, FaHeadset, FaXmark } from "react-icons/fa6";
 
 export default function FloatingContact({
   phone,
@@ -27,30 +26,37 @@ export default function FloatingContact({
 
   return (
     <div className="floating-contact">
-      <div className={`contact-menu ${isOpen ? "open" : ""}`}>
-        {facebook && (
-          <a href={facebook} target="_blank" rel="noreferrer" className="social-btn">
-            <FaFacebookF />
-          </a>
-        )}
-        {whatsapp && (
-          <a href={whatsapp} target="_blank" rel="noreferrer" className="social-btn">
-            <FaWhatsapp />
-          </a>
-        )}
-        {telegram && (
-          <a href={telegram} target="_blank" rel="noreferrer" className="social-btn">
-            <FaTelegram />
-          </a>
-        )}
-        {phone && (
-          <button onClick={handleCopyPhone} className="social-btn" title="Copy Number">
-            <FaPhone />
-          </button>
-        )}
+      <div className={`contact-menu ${isOpen ? "open" : ""}`} style={{ background: 'var(--card-bg)', padding: '15px', borderRadius: '15px', border: '1px solid var(--card-border)', backdropFilter: 'blur(10px)', alignItems: 'center' }}>
+        
+        <p className="made-by" style={{ fontSize: '0.85rem', marginBottom: '10px', whiteSpace: 'nowrap', textAlign: 'center' }}>
+          Made by <span className="highlight" style={{ color: 'var(--blue-accent)', fontWeight: 700 }}>Eng. Fares Mohammed</span>
+        </p>
+
+        <div style={{ display: 'flex', gap: '10px' }}>
+          {facebook && (
+            <a href={facebook} target="_blank" rel="noreferrer" className="social-btn" style={{ width: '35px', height: '35px', fontSize: '0.9rem' }}>
+              <FaFacebookF />
+            </a>
+          )}
+          {whatsapp && (
+            <a href={whatsapp} target="_blank" rel="noreferrer" className="social-btn" style={{ width: '35px', height: '35px', fontSize: '0.9rem' }}>
+              <FaWhatsapp />
+            </a>
+          )}
+          {telegram && (
+            <a href={telegram} target="_blank" rel="noreferrer" className="social-btn" style={{ width: '35px', height: '35px', fontSize: '0.9rem' }}>
+              <FaTelegram />
+            </a>
+          )}
+          {phone && (
+            <button onClick={handleCopyPhone} className="social-btn" title="Copy Number" style={{ width: '35px', height: '35px', fontSize: '0.9rem' }}>
+              <FaPhone />
+            </button>
+          )}
+        </div>
       </div>
       <button onClick={toggleOpen} className="floating-toggle">
-        {isOpen ? <FaXmark /> : <FaCommentDots />}
+        {isOpen ? <FaXmark /> : <FaHeadset />}
       </button>
     </div>
   );

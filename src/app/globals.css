@@ -143,20 +143,21 @@ main {
 
 /* Cards Grid */
 .cards-grid {
-    display: grid;
-    /* This makes it responsive and prevents full-width cards on mobile */
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
 }
 
 .flashcard {
     background-color: transparent;
-    width: 100%;
+    width: 180px; /* Fixed width for flex layout */
     height: 120px;
     perspective: 1000px;
     cursor: pointer;
     position: relative;
+    flex-grow: 1; /* Allow growing slightly */
+    max-width: 250px; /* Don't grow too large */
 }
 
 .flashcard-inner {

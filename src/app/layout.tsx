@@ -56,12 +56,6 @@ export default async function RootLayout({
           whatsapp={settingsMap.contact_whatsapp}
           facebook={settingsMap.contact_facebook}
         />
-
-        <footer>
-          <div className="footer-card">
-            <p className="made-by">Made by <span className="highlight">Eng. Fares Mohammed</span></p>
-          </div>
-        </footer>
       </body>
     </html>
   );
