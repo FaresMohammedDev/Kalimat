@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { 
   logout, addGrade, deleteGrade, addUnit, deleteUnit, 
-  addLesson, deleteLesson, addWord, updateSetting, changePassword 
+  addLesson, deleteLesson, addWord, deleteWord, updateSetting, changePassword 
 } from "@/app/admin/actions";
 import { supabase } from "@/lib/supabase";
 
-export default function AdminDashboard({ grades, units, lessons, settings }: any) {
+export default function AdminDashboard({ grades, units, lessons, words, settings }: any) {
   const router = useRouter();
   
   // States for new items
@@ -67,6 +67,7 @@ export default function AdminDashboard({ grades, units, lessons, settings }: any
     if (!lessonId) return alert("Please add a lesson first");
     await addWord(Number(lessonId), newEnWord, newArWord);
     setNewEnWord(""); setNewArWord("");
+    alert("تم حفظ الكلمة بنجاح!");
     refresh();
   };
 
@@ -192,6 +193,15 @@ export default function AdminDashboard({ grades, units, lessons, settings }: any
             </div>
             <button type="submit" className="primary-btn">Add Word</button>
           </form>
+
+          <ul style={{ marginTop: '15px', listStyle: 'none', maxHeight: '200px', overflowY: 'auto' }}>
+            {words?.filter((w: any) => w.lesson_id === Number(newWordLesson || lessons[0]?.id)).map((w: any) => (
+              <li key={w.id} style={{ display: 'flex', justifyContent: 'space-between', margin: '5px 0', borderBottom: '1px solid var(--card-border)', fontSize: '0.9rem' }}>
+                <span>{w.en_word} - {w.ar_word}</span>
+                <button onClick={async () => { await deleteWord(w.id); refresh(); }} style={{ color: 'var(--danger-accent)', background: 'transparent', border: 'none', cursor: 'pointer' }}>Delete</button>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Settings */}

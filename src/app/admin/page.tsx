@@ -20,6 +20,7 @@ export default async function AdminPage() {
   const { data: grades } = await supabase.from("grades").select("*").order("id");
   const { data: units } = await supabase.from("units").select("*").order("id");
   const { data: lessons } = await supabase.from("lessons").select("*").order("id");
+  const { data: words } = await supabase.from("words").select("*").order("id", { ascending: false });
   
   // Settings
   const { data: settings } = await supabase.from("settings").select("*");
@@ -27,7 +28,7 @@ export default async function AdminPage() {
 
   return (
     <main className="container">
-      <AdminDashboard grades={grades || []} units={units || []} lessons={lessons || []} settings={settingsMap || {}} />
+      <AdminDashboard grades={grades || []} units={units || []} lessons={lessons || []} words={words || []} settings={settingsMap || {}} />
     </main>
   );
 }
