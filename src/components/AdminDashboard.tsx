@@ -45,21 +45,27 @@ export default function AdminDashboard({ grades, units, lessons, settings }: any
 
   const handleAddUnit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await addUnit(Number(newUnitGrade), newUnitTitle);
+    const gradeId = newUnitGrade || grades[0]?.id;
+    if (!gradeId) return alert("Please add a grade first");
+    await addUnit(Number(gradeId), newUnitTitle);
     setNewUnitTitle("");
     refresh();
   };
 
   const handleAddLesson = async (e: React.FormEvent) => {
     e.preventDefault();
-    await addLesson(Number(newLessonUnit), newLessonTitle);
+    const unitId = newLessonUnit || units[0]?.id;
+    if (!unitId) return alert("Please add a unit first");
+    await addLesson(Number(unitId), newLessonTitle);
     setNewLessonTitle("");
     refresh();
   };
 
   const handleAddWord = async (e: React.FormEvent) => {
     e.preventDefault();
-    await addWord(Number(newWordLesson), newEnWord, newArWord);
+    const lessonId = newWordLesson || lessons[0]?.id;
+    if (!lessonId) return alert("Please add a lesson first");
+    await addWord(Number(lessonId), newEnWord, newArWord);
     setNewEnWord(""); setNewArWord("");
     refresh();
   };
