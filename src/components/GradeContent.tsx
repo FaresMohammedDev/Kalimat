@@ -27,9 +27,9 @@ export default function GradeContent({ units, gradeSlug }: { units: Unit[], grad
 
   const toggleLanguage = () => setIsArabicFront(!isArabicFront);
 
-  const playTTS = (e: React.MouseEvent, text: string) => {
-    e.stopPropagation(); // prevent flipping the card
-    const utterance = new SpeechSynthesisUtterance(text);
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>, enWord: string) => {
+    e.currentTarget.classList.toggle('flipped');
+    const utterance = new SpeechSynthesisUtterance(enWord);
     utterance.lang = "en-US";
     window.speechSynthesis.speak(utterance);
   };
@@ -60,7 +60,7 @@ export default function GradeContent({ units, gradeSlug }: { units: Unit[], grad
                <p style={{ textAlign: "center", color: "var(--text-secondary)" }}>No lessons in this unit.</p>
             ) : (
               unit.lessons.map((lesson) => (
-                <div key={lesson.id} style={{ marginBottom: '40px' }}>
+                <div key={lesson.id} style={{ marginBottom: '50px' }}>
                   <h3 style={{ textAlign: 'center', marginBottom: '20px', color: 'var(--text-secondary)' }}>{lesson.title}</h3>
                   <div className="cards-grid">
                     {lesson.words.map((word) => {
@@ -70,25 +70,28 @@ export default function GradeContent({ units, gradeSlug }: { units: Unit[], grad
                       const backDir = isArabicFront ? 'ltr' : 'rtl';
 
                       return (
-                        <div key={word.id} className="flashcard" onClick={(e) => e.currentTarget.classList.toggle('flipped')}>
+                        <div key={word.id} className="flashcard" onClick={(e) => handleCardClick(e, word.en_word)}>
                           <div className="flashcard-inner">
                             <div className="flashcard-front" dir={frontDir}>
                               {frontText}
-                              {!isArabicFront && (
-                                <FaVolumeHigh className="pronounce-icon" onClick={(e) => playTTS(e, word.en_word)} />
-                              )}
                             </div>
                             <div className="flashcard-back" dir={backDir}>
                               {backText}
-                              {isArabicFront && (
-                                <FaVolumeHigh className="pronounce-icon" onClick={(e) => playTTS(e, word.en_word)} />
-                              )}
                             </div>
                           </div>
                         </div>
                       );
                     })}
                   </div>
+                  
+                  {/* Dictation Game Button for this Lesson */}
+                  {lesson.words.length > 0 && (
+                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                      <Link href={`/kalimat/${gradeSlug}/dictation/${lesson.id}`} className="primary-btn" style={{ background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', color: '#fff', borderColor: 'transparent', padding: '8px 20px', fontSize: '0.9rem' }}>
+                        ✍️ إملاء (Dictation)
+                      </Link>
+                    </div>
+                  )}
                 </div>
               ))
             )}
